@@ -3,30 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jaja Kalimi | Traditional Healing & Herbal Wellness</title>
+  <title>Jajja Kalimi | Traditional Healing & Herbal Wellness</title>
   <style>
     :root[data-theme="dark"] {
       --bg-color: #08100c;
       --text-color: #e2e8f0;
-      --glass-bg: rgba(16, 37, 28, 0.65);
+      --heading-color: #ffffff;
+      --glass-bg: rgba(16, 37, 28, 0.85);
       --glass-border: rgba(255, 255, 255, 0.12);
       --glass-shadow: rgba(0, 0, 0, 0.5);
       --accent: #f4a261;
       --accent-green: #4ade80;
       --blob-1: rgba(34, 197, 94, 0.15);
       --blob-2: rgba(244, 162, 97, 0.1);
+      --logo-blend: screen;
+      --input-bg: rgba(255, 255, 255, 0.05);
     }
 
     :root[data-theme="light"] {
       --bg-color: #f7f5f0;
       --text-color: #1e293b;
-      --glass-bg: rgba(255, 255, 255, 0.75);
-      --glass-border: rgba(255, 255, 255, 0.8);
+      --heading-color: #0f172a;
+      --glass-bg: rgba(255, 255, 255, 0.9);
+      --glass-border: rgba(0, 0, 0, 0.1);
       --glass-shadow: rgba(31, 38, 135, 0.08);
       --accent: #c05621;
       --accent-green: #166534;
       --blob-1: rgba(187, 247, 208, 0.4);
       --blob-2: rgba(254, 215, 170, 0.3);
+      --logo-blend: multiply;
+      --input-bg: rgba(0, 0, 0, 0.03);
     }
 
     * {
@@ -46,7 +52,7 @@
     }
 
     .blob {
-      position: absolute;
+      position: fixed;
       border-radius: 50%;
       filter: blur(80px);
       z-index: 0;
@@ -71,7 +77,11 @@
       z-index: 10;
     }
 
+    /* Sticky Small Top Navbar Pad */
     nav {
+      position: sticky;
+      top: 1rem;
+      z-index: 100;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -79,61 +89,60 @@
       margin-bottom: 1.5rem;
     }
 
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .brand-logo-img {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 1px solid var(--glass-border);
-    }
-
-    /* JAJA KALIMI text forced completely in white */
     .logo-text {
       font-weight: 800;
-      font-size: 1.1rem;
+      font-size: 1rem;
       letter-spacing: 0.5px;
-      color: #ffffff !important;
+      color: var(--heading-color) !important;
+      white-space: nowrap; 
     }
 
     .nav-links {
       display: flex;
-      gap: 1rem;
+      gap: 0.8rem;
       align-items: center;
     }
 
     .nav-links a {
-      color: inherit;
+      color: var(--text-color);
       text-decoration: none;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 500;
       opacity: 0.85;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 600px) {
       .hide-mobile { display: none; }
     }
 
     .theme-btn {
       background: var(--glass-bg);
       border: 1px solid var(--glass-border);
-      color: inherit;
-      padding: 0.4rem 0.8rem;
+      color: var(--text-color);
+      padding: 0.35rem 0.7rem;
       border-radius: 50px;
       cursor: pointer;
       font-weight: 600;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
     }
 
+    /* Normal Scrolling Hero Section */
     .hero {
       text-align: center;
-      padding: 2.5rem 1.2rem;
+      padding: 3rem 1.2rem;
       margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .hero-logo-img {
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+      margin: 0 auto 1rem auto;
+      display: block;
+      mix-blend-mode: var(--logo-blend);
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
     }
 
     .badge {
@@ -152,14 +161,15 @@
 
     h1 {
       font-size: 2.2rem;
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.3rem;
       font-weight: 800;
       letter-spacing: -0.5px;
-      color: #ffffff !important; /* Forces title all in white */
+      color: var(--heading-color) !important;
+      line-height: 1.2;
     }
 
     .slogan {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       font-style: italic;
       color: var(--accent);
       margin-bottom: 1rem;
@@ -168,7 +178,8 @@
 
     p.subtitle {
       font-size: 0.95rem;
-      opacity: 0.8;
+      color: var(--text-color);
+      opacity: 0.9;
       max-width: 550px;
       margin: 0 auto 1.5rem auto;
       line-height: 1.5;
@@ -195,26 +206,148 @@
     }
 
     .btn-primary {
-      background: #166534;
-      color: white;
+      background: var(--accent-green);
+      color: #ffffff;
       width: 100%;
       max-width: 300px;
     }
 
     .btn-social {
-      color: inherit;
+      color: var(--text-color);
     }
 
+    /* Photo Pad */
+    .portrait-card {
+      text-align: center;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .jaja-large-photo {
+      width: 100%;
+      max-width: 320px;
+      height: 380px;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 16px;
+      border: 2px solid var(--accent);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+      margin: 0 auto 1rem auto;
+      display: block;
+    }
+
+    .portrait-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--heading-color);
+      margin-bottom: 0.2rem;
+    }
+
+    /* TikTok Feed Pad */
+    .tiktok-card {
+      padding: 1.8rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .tiktok-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.2rem;
+      border-bottom: 1px solid var(--glass-border);
+      padding-bottom: 0.6rem;
+    }
+
+    .tiktok-title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.2rem;
+      color: var(--heading-color);
+    }
+
+    .tiktok-grid {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .tiktok-embed-wrapper {
+      width: 100%;
+      max-width: 325px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    /* Services Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .card {
+      padding: 1.6rem;
+    }
+
+    .card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card h3 {
+      margin-bottom: 0.8rem;
+      font-size: 1.2rem;
+      color: var(--heading-color);
+      border-bottom: 1px solid var(--glass-border);
+      padding-bottom: 0.5rem;
+    }
+
+    .card ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .card li {
+      font-size: 0.9rem;
+      color: var(--text-color);
+      opacity: 0.85;
+      margin-bottom: 0.5rem;
+      position: relative;
+      padding-left: 1.2rem;
+      line-height: 1.4;
+    }
+
+    .card li::before {
+      content: "•";
+      color: var(--accent);
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+
+    /* Booking Form Section */
     .booking-section {
-      max-width: 550px;
+      width: 100%;
       margin: 0 auto 1.5rem auto;
-      padding: 1.8rem 1.2rem;
+      padding: 2rem 1.5rem;
+      position: relative;
+      z-index: 10;
     }
 
     .booking-section h2 {
       text-align: center;
       margin-bottom: 1.2rem;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
+      color: var(--heading-color);
     }
 
     .form-group {
@@ -226,6 +359,7 @@
       font-size: 0.85rem;
       font-weight: 600;
       margin-bottom: 0.3rem;
+      color: var(--heading-color);
       opacity: 0.9;
     }
 
@@ -233,9 +367,9 @@
       width: 100%;
       padding: 0.75rem 1rem;
       border-radius: 12px;
-      background: rgba(255, 255, 255, 0.05);
+      background: var(--input-bg);
       border: 1px solid var(--glass-border);
-      color: inherit;
+      color: var(--heading-color);
       font-size: 0.95rem;
       outline: none;
     }
@@ -257,39 +391,13 @@
       margin-top: 0.8rem;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-
-    .card {
-      padding: 1.4rem;
-    }
-
-    .card-icon {
-      font-size: 1.8rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .card h3 {
-      margin-bottom: 0.3rem;
-      font-size: 1.1rem;
-    }
-
-    .card p {
-      font-size: 0.85rem;
-      opacity: 0.75;
-      line-height: 1.4;
-    }
-
     @media (min-width: 768px) {
       body { padding: 1.5rem; }
-      .hero { padding: 3.5rem 2rem; }
+      .hero { padding: 4rem 2rem; }
+      .hero-logo-img { width: 110px; height: 110px; }
       h1 { font-size: 2.8rem; }
-      .grid { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-      .btn-primary { width: auto; }
-      .booking-section { padding: 2.5rem; }
+      .grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+      .booking-section { padding: 2.5rem 3rem; }
     }
 
     footer {
@@ -297,7 +405,10 @@
       margin-top: 2rem;
       padding: 1rem;
       font-size: 0.8rem;
-      opacity: 0.7;
+      color: var(--text-color);
+      opacity: 0.75;
+      position: relative;
+      z-index: 10;
     }
   </style>
 </head>
@@ -307,15 +418,13 @@
   <div class="blob blob-2"></div>
 
   <div class="container">
-    <!-- Navbar with Official Logo & All-White Title -->
+    <!-- Sticky Small Top Navbar Pad -->
     <nav class="liquid-card">
-      <div class="logo-container">
-        <img src="logo.png" alt="Logo" class="brand-logo-img">
-        <div class="logo-text">JAJA KALIMI</div>
-      </div>
+      <div class="logo-text">JAJJA KALIMI</div>
       <div class="nav-links">
-        <a href="#services">Services</a>
-        <a href="#booking">Book</a>
+        <a href="#tiktok" class="hide-mobile">TikTok</a>
+        <a href="#services" class="hide-mobile">Services</a>
+        <a href="#booking" class="hide-mobile">Book</a>
         <a href="tel:0700741140" class="hide-mobile">0700 741140</a>
         <button id="themeToggle" class="theme-btn">🌙 / ☀️</button>
       </div>
@@ -323,22 +432,196 @@
 
     <!-- Hero Section -->
     <section class="hero liquid-card">
-      <span class="badge">Traditional Healing & Herbal Wellness</span>
-      <h1>JAJA KALIMI</h1>
-      <div class="slogan">"Kabona Omubonesebwa"</div>
+      <img src="logo.png" alt="Jajja Kalimi Emblem" class="hero-logo-img">
+      <span class="badge">Kabona Omubonesebwa</span>
+      <h1>Jajja Kalimi</h1>
+      <div class="slogan">"Wenonye wezuule mu nono"</div>
       <p class="subtitle">Restoring balance of body and spirit through ancestral herbal knowledge and natural remedies.</p>
 
       <div class="btn-group">
         <a href="https://wa.me/256700741140" class="btn-primary">Chat on WhatsApp</a>
-        <a href="https://www.tiktok.com" target="_blank" class="btn-social liquid-card"><span>🎵</span> TikTok</a>
+        <a href="https://www.tiktok.com/@jajjakalimi" target="_blank" class="btn-social liquid-card"><span>🎵</span> TikTok</a>
         <a href="https://www.youtube.com" target="_blank" class="btn-social liquid-card"><span>▶️</span> YouTube</a>
       </div>
+    </section>
+
+    <!-- Dedicated Rectangular Portrait Pad -->
+    <section class="liquid-card portrait-card">
+      <img src="jaja.jpg" alt="Jajja Kalimi Portrait" class="jaja-large-photo">
+      <div class="portrait-title">Omusawo w'Ekinansi Kabona Kalimi</div>
+      <p style="font-size: 0.855rem; opacity: 0.8;">Traditional Healer & Spiritual Guide</p>
+    </section>
+
+    <!-- TikTok Feed Pad -->
+    <section id="tiktok" class="liquid-card tiktok-card">
+      <div class="tiktok-header">
+        <h3 class="tiktok-title"><span>🎵</span> Video za Jajja Kalimi ku TikTok</h3>
+        <a href="https://www.tiktok.com/@jajjakalimi" target="_blank" class="btn-social liquid-card" style="font-size: 0.75rem; padding: 0.4rem 0.8rem;">@jajjakalimi</a>
+      </div>
+      
+      <div class="tiktok-grid">
+        <div class="tiktok-embed-wrapper">
+          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@jajjakalimi" data-unique-id="jajjakalimi" data-embed-type="creator" style="max-width: 100%; min-width: 280px;">
+            <section>
+              <a target="_blank" href="https://www.tiktok.com/@jajjakalimi">@jajjakalimi</a>
+            </section>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- Detailed Services / Pads Grid -->
+    <section id="services" class="grid">
+      
+      <!-- Pad 1: Eby'obulogo n'eby'emizimu -->
+      <div class="liquid-card card">
+        <div class="card-icon">🔮</div>
+        <h3>Eby'obulogo n'eby'emizimu</h3>
+        <ul>
+          <li>Okulaguza – Okuzuula ekireeta ekizibu ng'oyita mu kulagula.</li>
+          <li>Okukwaaza Lubaale – Okunoonyereza ku mizimu gy'ekika oba egy'abajjajja.</li>
+          <li>Okwebuuza ku mizimu – Okufuna obubaka oba okuteesa n'emyoyo.</li>
+          <li>Okugoba emizimu emibi – Emikolo egigambibwa okugoba emizimu.</li>
+          <li>Okusamira – Okukola emikolo egy'ekinnansi nga bayita mu mizimu.</li>
+          <li>Okutabaganya n'emyoyo gy'abajjajja – Emikolo egy'okutabaganya abalamu n'emyoyo gy'abafu.</li>
+          <li>Okuzuula ensibuko y'ebizibu eby'omu maka.</li>
+          <li>Okugoba ekikolimo.</li>
+          <li>Okuggyako obusamize obubi.</li>
+          <li>Okwezza obukuumi obw'eby'obuwangwa.</li>
+        </ul>
+      </div>
+
+      <!-- Pad 2: Eddagala ly'ennono -->
+      <div class="liquid-card card">
+        <div class="card-icon">🌿</div>
+        <h3>Eddagala ly'ennono</h3>
+        <ul>
+          <li>Okunoonya eddagala ly'ennono.</li>
+          <li>Okufumba eddagala ly'ebimera.</li>
+          <li>Okugema endwadde mu ngeri ey'ennono.</li>
+          <li>Okunaaza eddagala ly'ennono.</li>
+          <li>Okunywa eddagala ly'ebimera.</li>
+          <li>Okusiba eddagala ku mubiri.</li>
+          <li>Okukola eddagala ly'abaana.</li>
+          <li>Okukola eddagala ly'okukuuma amaka.</li>
+          <li>Okukola eddagala ly'ebisolo.</li>
+        </ul>
+      </div>
+
+      <!-- Pad 3: Eby'obukuumi n'okwekuuma -->
+      <div class="liquid-card card">
+        <div class="card-icon">🛡️</div>
+        <h3>Eby'obukuumi n'okwekuuma</h3>
+        <ul>
+          <li>Okukola ensiriba – Ebyambalo oba ebintu ebigambibwa okukuuma omuntu.</li>
+          <li>Okukola yirizi – Eby'okwekuuma eby'ennono.</li>
+          <li>Okusiba omuntu eddagala.</li>
+          <li>Okukuuma amaka okuva mu kabi.</li>
+          <li>Okukuuma edduuka oba bizinensi.</li>
+          <li>Okukuuma ettaka n'ennyumba.</li>
+          <li>Okugema omuntu okuva mu buyinza bw'abalabe.</li>
+          <li>Okukola obukuumi bw'ekika.</li>
+        </ul>
+      </div>
+
+      <!-- Pad 4: Eby'okunaaba n'okwetukuza -->
+      <div class="liquid-card card">
+        <div class="card-icon">💧</div>
+        <h3>Eby'okunaaba n'okwetukuza</h3>
+        <ul>
+          <li>Okukwambulula – Okunaaba oba okwetukuza mu mikolo egy'ennono.</li>
+          <li>Okunaaba ekyoogo – Okunaaba mu ddagala ly'ennono.</li>
+          <li>Okukola ekyogero – Eddagala ly'abaana ery'okunaaba.</li>
+          <li>Okuggyako obukyafu obw'eby'obuwangwa.</li>
+          <li>Okutukuza amaka.</li>
+          <li>Okutukuza ekifo oba ettaka.</li>
+          <li>Okutukuza omuntu oluvannyuma lw'ekizibu.</li>
+        </ul>
+      </div>
+
+      <!-- Pad 5: Eby'omukwano n'obufumbo -->
+      <div class="liquid-card card">
+        <div class="card-icon">❤️</div>
+        <h3>Eby'omukwano n'obufumbo</h3>
+        <ul>
+          <li>Okutabaganya abafumbo.</li>
+          <li>Okuyamba abantu abalina obuzibu mu bufumbo.</li>
+          <li>Okunoonya omwagalwa.</li>
+          <li>Okukola emikolo gy'okwanjula.</li>
+          <li>Okuyamba abantu abanoonya abaagalwa.</li>
+          <li>Okukola emikolo gy'okwongera okunyweza obufumbo.</li>
+          <li>Okukola emikolo gy'okuzaala n'okuzaala obulungi.</li>
+        </ul>
+      </div>
+
+      <!-- Pad 6: Eby'obugagga n'emirimu -->
+      <div class="liquid-card card">
+        <div class="card-icon">💰</div>
+        <h3>Eby'obugagga n'emirimu</h3>
+        <ul>
+          <li>Okusabira bizinensi.</li>
+          <li>Okukola emikolo gy'okuggulawo edduuka.</li>
+          <li>Okusabira omulimu.</li>
+          <li>Okusabira obuwanguzi mu mirimu.</li>
+          <li>Okunoonya emikisa.</li>
+          <li>Okusabira ettaka n'amaka.</li>
+          <li>Okukola emikolo gy'okukuuma eby'obugagga.</li>
+          <li>Okusabira eby'obusuubuzi.</li>
+        </ul>
+      </div>
+
+      <!-- Pad 7: Eby'obulamu n'eby'obuzaale -->
+      <div class="liquid-card card">
+        <div class="card-icon">👶</div>
+        <h3>Eby'obulamu n'eby'obuzaale</h3>
+        <ul>
+          <li>Okuyamba abalina obulwadde nga bakozesa eddagala ly'ennono.</li>
+          <li>Okuyamba abakyala abali embuto mu buwangwa.</li>
+          <li>Okuyamba abakyala oluvannyuma lw'okuzaala.</li>
+          <li>Okukola emikolo gy'okuzaala.</li>
+          <li>Okuyamba abaana mu mikolo gy'obuwangwa.</li>
+          <li>Okuyunga omwana ku kika kye.</li>
+          <li>Okukola emikolo gy'okujjanjaba obulwadde obugambibwa okuba obw'emizimu.</li>
+        </ul>
+      </div>
+
+      <!-- Pad 8: Eby'ekika n'eby'obuwangwa -->
+      <div class="liquid-card card">
+        <div class="card-icon">🏛️</div>
+        <h3>Eby'ekika n'eby'obuwangwa</h3>
+        <ul>
+          <li>Okukola emikolo gy'ekika.</li>
+          <li>Okukuuma ebyafaayo by'ekika.</li>
+          <li>Okusisinkana emizimu gy'abajjajja.</li>
+          <li>Okukola emikolo gy'okujjukira abafu.</li>
+          <li>Okukola emikolo gy'okutongoza omusika.</li>
+          <li>Okukola emikolo gy'okutongoza omuntu mu buwangwa.</li>
+          <li>Okukola emikolo gy'okutabaganya ab'oluganda.</li>
+        </ul>
+      </div>
+
+      <!-- Last Pad: Divination and Hidden Knowledge -->
+      <div class="liquid-card card" style="grid-column: 1 / -1;">
+        <div class="card-icon">👁️</div>
+        <h3>Divination & Hidden Knowledge (Eby'okulaguza n'okumanya ebitalabika)</h3>
+        <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0.5rem 1.5rem;">
+          <li>Divining future events and outcomes.</li>
+          <li>Uncovering the root cause of blessings or misfortunes.</li>
+          <li>Identifying sources of conflicts within households.</li>
+          <li>Unveiling blocks to progress and success.</li>
+          <li>Divining matters of the heart and relationships.</li>
+          <li>Consulting regarding business and commercial ventures.</li>
+          <li>Health and spiritual diagnosis through divination.</li>
+          <li>Traditional board divination (Omweso readings).</li>
+        </ul>
+      </div>
+
     </section>
 
     <!-- Booking Form Section -->
     <section id="booking" class="liquid-card booking-section">
       <h2>Book Appointment</h2>
-      <form onsubmit="event.preventDefault(); alert('Appointment request submitted successfully! Jaja Kalimi will contact you shortly.');">
+      <form onsubmit="event.preventDefault(); alert('Appointment request submitted successfully! Jajja Kalimi will contact you shortly.');">
         <div class="form-group">
           <label for="clientName">Full Name</label>
           <input type="text" id="clientName" class="form-control" placeholder="Enter your name" required>
@@ -352,9 +635,15 @@
         <div class="form-group">
           <label for="serviceType">Select Service</label>
           <select id="serviceType" class="form-control">
-            <option value="Herbal Remedies">Herbal Remedies</option>
-            <option value="Spiritual Alignment">Spiritual Alignment</option>
-            <option value="Private Consultation">Private Consultation</option>
+            <option value="Eby'obulogo n'eby'emizimu">Eby'obulogo n'eby'emizimu</option>
+            <option value="Eddagala ly'ennono">Eddagala ly'ennono</option>
+            <option value="Eby'obukuumi n'okwekuuma">Eby'obukuumi n'okwekuuma</option>
+            <option value="Eby'okunaaba n'okwetukuza">Eby'okunaaba n'okwetukuza</option>
+            <option value="Eby'omukwano n'obufumbo">Eby'omukwano n'obufumbo</option>
+            <option value="Eby'obugagga n'emirimu">Eby'obugagga n'emirimu</option>
+            <option value="Eby'obulamu n'eby'obuzaale">Eby'obulamu n'eby'obuzaale</option>
+            <option value="Eby'ekika n'eby'obuwangwa">Eby'ekika n'eby'obuwangwa</option>
+            <option value="Divination & Hidden Knowledge">Divination & Hidden Knowledge</option>
           </select>
         </div>
 
@@ -367,29 +656,13 @@
       </form>
     </section>
 
-    <!-- Services Grid -->
-    <section id="services" class="grid">
-      <div class="liquid-card card">
-        <div class="card-icon">🌿</div>
-        <h3>Herbal Remedies</h3>
-        <p>Custom-prepared traditional herbs for natural cleansing, vitality, and physical wellness.</p>
-      </div>
-      <div class="liquid-card card">
-        <div class="card-icon">✨</div>
-        <h3>Spiritual Alignment</h3>
-        <p>Traditional guidance and protection work to restore peace, positive energy, and clarity.</p>
-      </div>
-      <div class="liquid-card card">
-        <div class="card-icon">🗣️</div>
-        <h3>Direct Sessions</h3>
-        <p>Get in touch directly for one-on-one sessions. Call or text us at 0700741140.</p>
-      </div>
-    </section>
-
     <footer>
-      &copy; 2026 Jaja Kalimi &bull; Kabona Omubonesebwa
+      &copy; 2026 Jajja Kalimi &bull; Kabona Omubonesebwa
     </footer>
   </div>
+
+  <!-- TikTok Embed Script -->
+  <script async src="https://www.tiktok.com/embed.js"></script>
 
   <script>
     const toggleBtn = document.getElementById('themeToggle');
