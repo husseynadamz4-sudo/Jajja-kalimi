@@ -297,10 +297,11 @@
       margin-bottom: 0.2rem;
     }
 
-    /* TikTok Feed Pad */
+    /* TikTok Video Feed Pad */
     .tiktok-card {
-      padding: 1.8rem;
+      padding: 2rem 1.5rem;
       margin-bottom: 1.5rem;
+      text-align: center;
       position: relative;
       z-index: 10;
     }
@@ -309,7 +310,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1rem;
       border-bottom: 1px solid var(--glass-border);
       padding-bottom: 0.6rem;
     }
@@ -322,18 +323,22 @@
       color: var(--heading-color);
     }
 
-    .tiktok-grid {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    .tiktok-player-container {
+      width: 100%;
+      max-width: 340px;
+      height: 520px;
+      margin: 0 auto;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+      background: rgba(0, 0, 0, 0.3);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
     }
 
-    .tiktok-embed-wrapper {
+    .tiktok-player-container iframe {
       width: 100%;
-      max-width: 325px;
-      border-radius: 12px;
-      overflow: hidden;
-      background: rgba(0, 0, 0, 0.2);
+      height: 100%;
+      border: none;
     }
 
     /* Services Grid */
@@ -519,21 +524,16 @@
       <p style="font-size: 0.855rem; opacity: 0.8;">Traditional Healer & Spiritual Guide</p>
     </section>
 
-    <!-- TikTok Feed Pad -->
+    <!-- TikTok Video Feed Pad -->
     <section id="tiktok" class="liquid-card tiktok-card">
       <div class="tiktok-header">
         <h3 class="tiktok-title"><span>🎵</span> Video za Jajja Kalimi ku TikTok</h3>
         <a href="https://www.tiktok.com/@jajjakalimi" target="_blank" class="btn-social liquid-card" style="font-size: 0.75rem; padding: 0.4rem 0.8rem;">@jajjakalimi</a>
       </div>
-      
-      <div class="tiktok-grid">
-        <div class="tiktok-embed-wrapper">
-          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@jajjakalimi" data-unique-id="jajjakalimi" data-embed-type="creator" style="max-width: 100%; min-width: 280px;">
-            <section>
-              <a target="_blank" href="https://www.tiktok.com/@jajjakalimi">@jajjakalimi</a>
-            </section>
-          </blockquote>
-        </div>
+
+      <div class="tiktok-player-container">
+        <!-- Secure Embedded Profile Player Frame bypassing overload restrictions -->
+        <iframe src="https://www.tiktok.com/embed/@jajjakalimi" allowfullscreen scrolling="no" title="Jajja Kalimi TikTok Videos"></iframe>
       </div>
     </section>
 
@@ -727,9 +727,6 @@
       &copy; 2026 Jajja Kalimi &bull; Kabona Omubonesebwa
     </footer>
   </div>
-
-  <!-- TikTok Embed Script -->
-  <script async src="https://www.tiktok.com/embed.js"></script>
 
   <script>
     const toggleBtn = document.getElementById('themeToggle');
